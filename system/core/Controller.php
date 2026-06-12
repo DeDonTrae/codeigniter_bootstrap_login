@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CodeIgniter
  *
@@ -35,7 +36,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Application Controller Class
@@ -49,7 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/general/controllers.html
  */
-class CI_Controller {
+class CI_Controller
+{
 
 	/**
 	 * Reference to the CI singleton
@@ -66,23 +68,141 @@ class CI_Controller {
 	public $load;
 
 	/**
+	 * Benchmark class
+	 *
+	 * @var	CI_Benchmark
+	 */
+	public $benchmark;
+
+	/**
+	 * Hooks class
+	 *
+	 * @var	CI_Hooks
+	 */
+	public $hooks;
+
+	/**
+	 * Config class
+	 *
+	 * @var	CI_Config
+	 */
+	public $config;
+
+	/**
+	 * Log class
+	 *
+	 * @var	CI_Log
+	 */
+	public $log;
+
+	/**
+	 * Utf8 class
+	 *
+	 * @var	CI_Utf8
+	 */
+	public $utf8;
+
+	/**
+	 * URI class
+	 *
+	 * @var	CI_URI
+	 */
+	public $uri;
+
+	/**
+	 * Exceptions class
+	 *
+	 * @var	CI_Exceptions
+	 */
+	public $exceptions;
+
+	/**
+	 * Router class
+	 *
+	 * @var	CI_Router
+	 */
+	public $router;
+
+	/**
+	 * Output class
+	 *
+	 * @var	CI_Output
+	 */
+	public $output;
+
+	/**
+	 * Security class
+	 *
+	 * @var	CI_Security
+	 */
+	public $security;
+
+	/**
+	 * Input class
+	 *
+	 * @var	CI_Input
+	 */
+	public $input;
+
+	/**
+	 * Lang class
+	 *
+	 * @var	CI_Lang
+	 */
+	public $lang;
+
+	/**
+	 * Database object
+	 *
+	 * @var	CI_DB_query_builder
+	 */
+	public $db;
+
+	/**
+	 * Session library
+	 *
+	 * @var	CI_Session
+	 */
+	public $session;
+
+	/**
+	 * Form Validation library
+	 *
+	 * @var	CI_Form_validation
+	 */
+	public $form_validation;
+
+	/**
+	 * User Agent class
+	 *
+	 * @var	CI_User_agent
+	 */
+	public $agent;
+
+	/**
+	 * Login model
+	 *
+	 * @var	M_login
+	 */
+	public $M_login;
+
+	/**
 	 * Class constructor
 	 *
 	 * @return	void
 	 */
 	public function __construct()
 	{
-		self::$instance =& $this;
+		self::$instance = &$this;
 
 		// Assign all the class objects that were instantiated by the
 		// bootstrap file (CodeIgniter.php) to local class variables
 		// so that CI can run as one big super object.
-		foreach (is_loaded() as $var => $class)
-		{
-			$this->$var =& load_class($class);
+		foreach (is_loaded() as $var => $class) {
+			$this->$var = &load_class($class);
 		}
 
-		$this->load =& load_class('Loader', 'core');
+		$this->load = &load_class('Loader', 'core');
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
 	}
@@ -99,5 +219,4 @@ class CI_Controller {
 	{
 		return self::$instance;
 	}
-
 }
